@@ -6,19 +6,17 @@ var resizeId
 $(document).ready(function ($) {
   'use strict'
 
-  let prevScrollPos = $(window).scrollTop()
-  const navbar = $('.navbar')
+  let theEnd = 0,
+    navbar = document.getElementById('navbar')
 
-  $(window).scroll(() => {
-    const currentScrollPos = $(window).scrollTop()
-    if (prevScrollPos > currentScrollPos) {
-      // Scrolling up
-      navbar.removeClass('hide')
+  $(window).scroll(function () {
+    var scrollTop = window.pageYOffset || document.documentElement.scrollTop
+    if (scrollTop > theEnd) {
+      navbar.style.top = '-100px'
     } else {
-      // Scrolling down
-      navbar.addClass('hide')
+      navbar.style.top = '0'
     }
-    prevScrollPos = currentScrollPos
+    theEnd = scrollTop
   })
 
   $('.ts-bubble-border').each(function () {
